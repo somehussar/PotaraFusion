@@ -1,10 +1,74 @@
 package io.github.somehussar.potara;
 
 import cpw.mods.fml.common.Mod;
+import cpw.mods.fml.common.SidedProxy;
+import cpw.mods.fml.common.event.*;
+import io.github.somehussar.potara.proxy.CommonProxy;
+import org.apache.logging.log4j.Logger;
 
-@Mod(modid = PotaraMain.MODID, version="1.0")
+@Mod(modid = PotaraMain.MODID, version=PotaraMain.VERSION, acceptableRemoteVersions = "*")
 public class PotaraMain {
-    @Mod.Instance(PotaraMain.MODID)
-    public static PotaraMain instance;
+
     public static final String MODID = "potara";
+    public static final String VERSION = "1.0.0";
+
+    @Mod.Instance(PotaraMain.MODID)
+    private static PotaraMain instance;
+    @SidedProxy(clientSide = "io.github.somehussar.potara.proxy.ClientProxy", serverSide = "io.github.somehussar.potara.proxy.CommonProxy")
+    private static CommonProxy proxy;
+    private static Logger logger;
+
+    public static PotaraMain getInstance() {
+        return instance;
+    }
+
+    public static CommonProxy getProxy(){
+        return proxy;
+    }
+
+    public static Logger getLogger(){
+        return logger;
+    }
+
+
+    @Mod.EventHandler
+    public void onPreInit(FMLPreInitializationEvent e){
+        logger = e.getModLog();
+        proxy.onPreInit(e);
+    }
+
+    @Mod.EventHandler
+    public void onInit(FMLInitializationEvent e){
+        proxy.onInit(e);
+    }
+
+    @Mod.EventHandler
+    public void onPostInit(FMLPostInitializationEvent e) {
+        proxy.onPostInit(e);
+    }
+
+    @Mod.EventHandler
+    public void onAboutToStart(FMLServerAboutToStartEvent e) {
+        proxy.onAboutToStart(e);
+    }
+
+    @Mod.EventHandler
+    public void onStarting(FMLServerStartingEvent e) {
+        proxy.onStarting(e);
+    }
+
+    @Mod.EventHandler
+    public void onStarted(FMLServerStartedEvent e) {
+        proxy.onStarted(e);
+    }
+
+    @Mod.EventHandler
+    public void onStopping(FMLServerStoppingEvent e) {
+        proxy.onStopping(e);
+    }
+
+    @Mod.EventHandler
+    public void onStopped(FMLServerStoppedEvent e) {
+        proxy.onStopped(e);
+    }
 }
