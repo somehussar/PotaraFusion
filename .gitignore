@@ -1,0 +1,13 @@
+# Ignore these files:
+/libs/*
+
+/forge-*
+/*.txt
+/gradle*
+/out
+/libs/DEV*.jar
+
+/eclipse/*
+
+# DO NOT ignore these files:
+!/eclipse/mods
