@@ -23,7 +23,7 @@ public class CommonProxy {
     }
 
     public void onStarting(FMLServerStartingEvent e) {
-
+        e.registerServerCommand(new TestCommand());
     }
 
     public void onStarted(FMLServerStartedEvent e) {
