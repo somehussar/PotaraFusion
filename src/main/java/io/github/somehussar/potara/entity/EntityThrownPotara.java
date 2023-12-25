@@ -7,7 +7,6 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityExpBottle;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
@@ -15,15 +14,18 @@ import net.minecraft.world.World;
 public class EntityThrownPotara extends EntityExpBottle {
 
     private EntityPlayerMP player;
-    private String playerName;
 
+    public EntityThrownPotara(World p_i1785_1_)
+    {
+        super(p_i1785_1_);
+    }
     public EntityThrownPotara(World world, EntityLivingBase entity){
         super(world, entity);
 
         this.player = (EntityPlayerMP) entity;
 
         this.motionX *= 2;
-        this.motionY *= 2;
+        this.motionY *= 1.2;
         this.motionZ *= 2;
     }
 
