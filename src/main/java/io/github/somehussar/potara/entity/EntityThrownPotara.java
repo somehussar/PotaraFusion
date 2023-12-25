@@ -2,10 +2,12 @@ package io.github.somehussar.potara.entity;
 
 import io.github.somehussar.potara.item.ItemRegistry;
 import io.github.somehussar.potara.player.DBCPlayerWrapper;
+import io.github.somehussar.potara.util.InventoryUtil;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityExpBottle;
 import net.minecraft.entity.item.EntityItem;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.MovingObjectPosition;
@@ -34,48 +36,56 @@ public class EntityThrownPotara extends EntityExpBottle {
 
     @Override
     protected void onImpact(MovingObjectPosition object){
-        if(this.worldObj.isRemote){
+        if(this.worldObj.isRemote){ //Make sure it runs on the server's side
             return;
         }
 
-        if(player == null){
-            summonDrop();
-            return;
-        }
-
-        MovingObjectPosition.MovingObjectType hitType = object.typeOfHit;
-
-        player.addChatComponentMessage(new ChatComponentText("HIT! Impact type: "+hitType));
-
-        if(hitType != MovingObjectPosition.MovingObjectType.ENTITY){
-            summonDrop();
-            return;
-        }
-
-        Entity hitEntity = object.entityHit;
-
-        if(!(hitEntity instanceof EntityPlayerMP)){ //Summon drop and return if it didn't hit any player
-            summonDrop();
-            return;
-        }
-
-        if(hitEntity == (Entity) player){
-            player.addChatComponentMessage(new ChatComponentText("Bruh... Really trying to fuse with yourself?"));
-            if(!player.capabilities.isCreativeMode)
-                ItemRegistry.POTARA_CUSTOM_ITEM.give(player);
-            player.addChatComponentMessage(new ChatComponentText(""+ DBCPlayerWrapper.getPlayer(player).hasNoFuse()+" "+DBCPlayerWrapper.getPlayer(player).willingToFuse()));
-            this.setDead();
-            return;
-        }
         this.setDead();
+
+
+        // this.player == null - used for potaras thrown during a server restart
+        //
+        // checks if potara still has a thrower player and if the hit object is a player
+        if( this.player == null || !(object.entityHit instanceof EntityPlayerMP)){
+            if(this.player != null)
+                this.player.addChatComponentMessage(new ChatComponentText("You missed!"));
+            this.summonDrop();
+            return;
+        }
+
+        DBCPlayerWrapper hitPlayer = DBCPlayerWrapper.getPlayer((EntityPlayer) object.entityHit);
+        DBCPlayerWrapper throwerPlayer = DBCPlayerWrapper.getPlayer(this.player);
+
+        if(throwerPlayer.compare(hitPlayer)){ //Return potara to player if they shot at themselves
+            this.player.addChatComponentMessage(new ChatComponentText("Bruh... Really trying to fuse with yourself?"));
+            this.returnToPlayer();
+
+            return;
+        }
+
+        if(hitPlayer.canUsePotara() && hitPlayer.willingToFuse()){
+            throwerPlayer.fuseWith(hitPlayer, 30);
+            InventoryUtil.removeItem(hitPlayer.getPlayer(), ItemRegistry.POTARA_CUSTOM_ITEM.getItemStack(), 1);
+
+            return;
+        }
+
+        this.player.addChatComponentMessage(new ChatComponentText("This player either can't or isn't willing to undergo Potara Fusion"));
+
+        this.returnToPlayer();
     }
 
     public Entity getDropEntity(){
         return new EntityItem(this.worldObj, this.posX, this.posY+0.5, this.posZ, ItemRegistry.POTARA_CUSTOM_ITEM.getItemStack());
     }
+
+    private void returnToPlayer(){
+        if(!this.player.capabilities.isCreativeMode)
+            ItemRegistry.POTARA_CUSTOM_ITEM.give(this.player);
+    }
+
     private void summonDrop(){
         this.worldObj.spawnEntityInWorld(getDropEntity());
-        this.setDead();
     }
 
 
