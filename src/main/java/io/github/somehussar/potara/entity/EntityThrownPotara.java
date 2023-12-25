@@ -24,9 +24,8 @@ public class EntityThrownPotara extends EntityExpBottle {
 
         this.player = (EntityPlayerMP) entity;
 
-        this.motionX *= 2;
-        this.motionY *= 1.2;
-        this.motionZ *= 2;
+        this.motionX *= 2.5;
+        this.motionZ *= 2.5;
     }
 
     public EntityThrownPotara(World world, double x, double y, double z){
