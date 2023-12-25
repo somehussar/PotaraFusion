@@ -6,7 +6,6 @@ import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import io.github.somehussar.potara.entity.EntityThrownPotara;
 import io.github.somehussar.potara.item.ItemRegistry;
 import io.github.somehussar.potara.player.DBCPlayerWrapper;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
@@ -15,7 +14,6 @@ import net.minecraft.util.EnumChatFormatting;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 
 public class PlayerListener {
-
 
     @SubscribeEvent
     public void interactEvent(PlayerInteractEvent event){

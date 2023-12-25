@@ -72,8 +72,7 @@ public class EntityThrownPotara extends EntityExpBottle {
     }
 
     public Entity getDropEntity(){
-        Entity drop = new EntityItem(this.worldObj, this.posX, this.posY+0.5, this.posZ, ItemRegistry.POTARA_CUSTOM_ITEM.getItemStack());
-        return drop;
+        return new EntityItem(this.worldObj, this.posX, this.posY+0.5, this.posZ, ItemRegistry.POTARA_CUSTOM_ITEM.getItemStack());
     }
     private void summonDrop(){
         this.worldObj.spawnEntityInWorld(getDropEntity());
