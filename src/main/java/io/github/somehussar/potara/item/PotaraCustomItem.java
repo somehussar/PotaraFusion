@@ -22,7 +22,6 @@ public class PotaraCustomItem extends CustomItem {
 
         item.getCompoundTag("PotaraEarrings");
         item.setBoolean("isPotara", true);
-        item.setBoolean("customPotara", false);
         NBTTagCompound display = item.getCompoundTag("display");
 
         NBTTagList lore = new NBTTagList();
@@ -33,6 +32,6 @@ public class PotaraCustomItem extends CustomItem {
 
     @Override
     public boolean compare(ItemStack stack){
-        return stack.getTagCompound() != null && stack.getTagCompound().getBoolean("isPotara");
+        return stack != null && stack.getTagCompound().getBoolean("isPotara");
     }
 }

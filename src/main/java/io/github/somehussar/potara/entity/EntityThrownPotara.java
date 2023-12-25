@@ -1,14 +1,13 @@
 package io.github.somehussar.potara.entity;
 
-import io.github.somehussar.potara.PotaraMain;
 import io.github.somehussar.potara.item.ItemRegistry;
+import io.github.somehussar.potara.player.DBCPlayerWrapper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityExpBottle;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.entity.projectile.EntityEgg;
-import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
@@ -16,23 +15,21 @@ import net.minecraft.world.World;
 public class EntityThrownPotara extends EntityExpBottle {
 
     private EntityPlayerMP player;
-    private ItemStack stack;
-    public EntityThrownPotara(World p_i1779_1_) {
-        super(p_i1779_1_);
-    }
+    private String playerName;
 
-    public EntityThrownPotara(World world, EntityLivingBase entity, ItemStack stack){
+    public EntityThrownPotara(World world, EntityLivingBase entity){
         super(world, entity);
+
         this.player = (EntityPlayerMP) entity;
-        this.stack = stack;
+
         this.motionX *= 2;
         this.motionY *= 2;
         this.motionZ *= 2;
     }
+
     public EntityThrownPotara(World world, double x, double y, double z){
         super(world, x, y, z);
     }
-
 
     @Override
     protected void onImpact(MovingObjectPosition object){
@@ -40,9 +37,19 @@ public class EntityThrownPotara extends EntityExpBottle {
             return;
         }
 
+        if(player == null){
+            summonDrop();
+            return;
+        }
+
         MovingObjectPosition.MovingObjectType hitType = object.typeOfHit;
 
         player.addChatComponentMessage(new ChatComponentText("HIT! Impact type: "+hitType));
+
+        if(hitType != MovingObjectPosition.MovingObjectType.ENTITY){
+            summonDrop();
+            return;
+        }
 
         Entity hitEntity = object.entityHit;
 
@@ -51,13 +58,23 @@ public class EntityThrownPotara extends EntityExpBottle {
             return;
         }
 
+        if(hitEntity == (Entity) player){
+            player.addChatComponentMessage(new ChatComponentText("Bruh... Really trying to fuse with yourself?"));
+            if(!player.capabilities.isCreativeMode)
+                ItemRegistry.POTARA_CUSTOM_ITEM.give(player);
+            player.addChatComponentMessage(new ChatComponentText(""+ DBCPlayerWrapper.getPlayer(player).hasNoFuse()+" "+DBCPlayerWrapper.getPlayer(player).willingToFuse()));
+            this.setDead();
+            return;
+        }
         this.setDead();
     }
 
-
+    public Entity getDropEntity(){
+        Entity drop = new EntityItem(this.worldObj, this.posX, this.posY+0.5, this.posZ, ItemRegistry.POTARA_CUSTOM_ITEM.getItemStack());
+        return drop;
+    }
     private void summonDrop(){
-        Entity drop = new EntityItem(this.worldObj, this.posX, this.posY+0.5, this.posZ, this.stack);
-        this.worldObj.spawnEntityInWorld(drop);
+        this.worldObj.spawnEntityInWorld(getDropEntity());
         this.setDead();
     }
 
