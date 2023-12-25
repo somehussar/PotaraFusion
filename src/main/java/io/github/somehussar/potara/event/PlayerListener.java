@@ -6,6 +6,7 @@ import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import io.github.somehussar.potara.entity.EntityThrownPotara;
 import io.github.somehussar.potara.item.ItemRegistry;
 import io.github.somehussar.potara.player.DBCPlayerWrapper;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
@@ -14,6 +15,7 @@ import net.minecraft.util.EnumChatFormatting;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 
 public class PlayerListener {
+
 
     @SubscribeEvent
     public void interactEvent(PlayerInteractEvent event){
@@ -53,6 +55,7 @@ public class PlayerListener {
         if(!player.capabilities.isCreativeMode)
                 --item.stackSize;
 
+        player.getEntityWorld().playSoundAtEntity(player, "random.bow", 0.5F, (float) (0.4F / Math.random() * 0.4F + 0.8F));
         EntityThrownPotara potara = new EntityThrownPotara(player.getEntityWorld(), (EntityLivingBase) player);
         player.getEntityWorld().spawnEntityInWorld(potara);
 
