@@ -3,7 +3,7 @@ package io.github.somehussar.potara.item;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 
-public abstract class CustomItem {
+public abstract class ItemStackWrapper {
 
     protected ItemStack itemStack;
 

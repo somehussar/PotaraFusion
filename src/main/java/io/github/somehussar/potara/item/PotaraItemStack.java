@@ -8,9 +8,9 @@ import net.minecraft.nbt.NBTTagString;
 
 import static net.minecraft.util.EnumChatFormatting.*;
 
-public class PotaraCustomItem extends CustomItem {
+public class PotaraItemStack extends ItemStackWrapper {
 
-    public PotaraCustomItem(){
+    public PotaraItemStack(){
         itemStack = new ItemStack(Items.experience_bottle, 1);
         itemStack.setStackDisplayName(""+ GREEN + BOLD + "Potara Earring!");
 
@@ -32,6 +32,6 @@ public class PotaraCustomItem extends CustomItem {
 
     @Override
     public boolean compare(ItemStack stack){
-        return stack != null && stack.getTagCompound().getBoolean("isPotara");
+        return stack != null && stack.hasTagCompound() && stack.getTagCompound().getBoolean("isPotara");
     }
 }
