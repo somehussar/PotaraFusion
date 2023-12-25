@@ -14,7 +14,7 @@ public class PotaraMain {
 
     @Mod.Instance(PotaraMain.MODID)
     private static PotaraMain instance;
-    @SidedProxy(clientSide = "io.github.somehussar.potara.proxy.ClientProxy", serverSide = "io.github.somehussar.potara.proxy.CommonProxy")
+    @SidedProxy(clientSide = "io.github.somehussar.potara.proxy.CommonProxy", serverSide = "io.github.somehussar.potara.proxy.CommonProxy")
     private static CommonProxy proxy;
     private static Logger logger;
 
