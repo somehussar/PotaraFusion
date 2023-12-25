@@ -51,10 +51,12 @@ public class PlayerListener {
         }
 
         if(!player.capabilities.isCreativeMode)
-                --item.stackSize;
+            if(--item.stackSize <= 0)
+                player.setCurrentItemOrArmor(0, null);
+
 
         player.getEntityWorld().playSoundAtEntity(player, "random.bow", 0.5F, (float) (0.4F / Math.random() * 0.4F + 0.8F));
-        EntityThrownPotara potara = new EntityThrownPotara(player.getEntityWorld(), (EntityLivingBase) player);
+        EntityThrownPotara potara = new EntityThrownPotara(player.getEntityWorld(), player);
         player.getEntityWorld().spawnEntityInWorld(potara);
 
     }
