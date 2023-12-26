@@ -1,5 +1,6 @@
 package io.github.somehussar.potara.entity;
 
+import io.github.somehussar.potara.PotaraConfig;
 import io.github.somehussar.potara.item.ItemRegistry;
 import io.github.somehussar.potara.player.DBCPlayerWrapper;
 import net.minecraft.entity.Entity;
@@ -62,7 +63,7 @@ public class EntityThrownPotara extends EntityExpBottle {
         }
 
         if(hitPlayer.canUsePotara() && hitPlayer.willingToFuse()){
-            throwerPlayer.fuseWith(hitPlayer, 30);
+            throwerPlayer.fuseWith(hitPlayer, PotaraConfig.potaraFuseTime);
 
             ItemStack heldItem = hitPlayer.getPlayer().getHeldItem();
             if(heldItem.stackSize > 1)
