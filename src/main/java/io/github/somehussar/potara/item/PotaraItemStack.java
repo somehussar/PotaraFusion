@@ -30,4 +30,9 @@ public class PotaraItemStack extends ItemStackWrapper {
         display.setTag("Lore", lore);
     }
 
+    @Override
+    public boolean compare(ItemStack stack){
+        return stack.stackTagCompound != null && stack.stackTagCompound.getBoolean("isPotara");
+    }
+
 }
