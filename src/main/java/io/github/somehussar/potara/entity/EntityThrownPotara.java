@@ -62,7 +62,7 @@ public class EntityThrownPotara extends EntityExpBottle {
             return;
         }
 
-        if(hitPlayer.canUsePotara() && hitPlayer.willingToFuse()){
+        if(hitPlayer.canUsePotara() && hitPlayer.willingToFuse() && hitPlayer.hasPotaraInHand() && throwerPlayer.canUsePotara()){
             throwerPlayer.fuseWith(hitPlayer, PotaraConfig.potaraFuseTime);
 
             ItemStack heldItem = hitPlayer.getPlayer().getHeldItem();

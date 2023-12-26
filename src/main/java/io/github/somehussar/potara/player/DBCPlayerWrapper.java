@@ -7,10 +7,9 @@ import io.github.somehussar.potara.PotaraMain;
 import io.github.somehussar.potara.item.ItemRegistry;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.ChatComponentTranslation;
+import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.ChatStyle;
 import net.minecraft.util.EnumChatFormatting;
-import net.minecraft.util.IChatComponent;
 
 public class DBCPlayerWrapper {
 
@@ -62,9 +61,9 @@ public class DBCPlayerWrapper {
         spectator.setState2((byte) 0);
 
         String fusionName = JRMCoreHDBC.f_namgen(p1Name, p2Name);
-        IChatComponent translation = new ChatComponentTranslation(JRMCoreH.trlai("dbc", "playersFused"), p1Name, p2Name, fusionName).setChatStyle(new ChatStyle().setColor(EnumChatFormatting.YELLOW));
-        this.player.addChatComponentMessage(translation);
-        spectator.player.addChatComponentMessage(translation);
+        ChatComponentText fusionMessage = (ChatComponentText) new ChatComponentText(String.format("%s and %s became %s because of Potara Fusion!", p1Name, p2Name, fusionName)).setChatStyle(new ChatStyle().setColor(EnumChatFormatting.YELLOW));
+        this.player.addChatComponentMessage(fusionMessage);
+        spectator.player.addChatComponentMessage(fusionMessage);
         PotaraMain.getLogger().info(String.format("%s and %s fused into %s!", p1Name, p2Name, fusionName));
         this.player.worldObj.playSoundAtEntity(this.player, "jinryuudragonbc:DBC.fusefin", 0.15f, 1.0f);
 
@@ -82,7 +81,11 @@ public class DBCPlayerWrapper {
     }
 
     public boolean canUsePotara(){
-        return canFuse() && getFusionLevel() == 10 && ItemRegistry.POTARA_CUSTOM_ITEM.compare(player.getHeldItem());
+        return canFuse() && getFusionLevel() == 10;
+    }
+
+    public boolean hasPotaraInHand(){
+        return ItemRegistry.POTARA_CUSTOM_ITEM.compare(player.getHeldItem());
     }
 
     public boolean hasNoFuse(){

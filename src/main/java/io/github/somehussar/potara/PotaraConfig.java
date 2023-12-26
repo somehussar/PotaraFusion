@@ -13,7 +13,14 @@ public class PotaraConfig {
 
     public static String potaraName = EnumChatFormatting.GREEN.toString() + EnumChatFormatting.BOLD + "Potara Earring";
     public static String[] potaraLore = {
-            EnumChatFormatting.DARK_PURPLE+"An earring used to create powerful, cross/race fusions."
+            EnumChatFormatting.LIGHT_PURPLE+"An earring used to create powerful, cross/race fusions.",
+            "",
+            EnumChatFormatting.AQUA+"Simply throw to use",
+            "",
+            EnumChatFormatting.GREEN + "Requirements: ",
+            EnumChatFormatting.DARK_PURPLE+"-Level 10 fusion",
+            EnumChatFormatting.DARK_PURPLE+"-Fusion enabled",
+            EnumChatFormatting.DARK_PURPLE+"-Potara held by each player."
     };
 
     public static int potaraFuseTime = 30;

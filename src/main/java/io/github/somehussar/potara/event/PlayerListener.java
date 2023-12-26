@@ -47,7 +47,7 @@ public class PlayerListener {
         DBCPlayerWrapper plr = DBCPlayerWrapper.getPlayer(player);
 
         if(!plr.canUsePotara() || !plr.willingToFuse()){
-            player.addChatComponentMessage(new ChatComponentText("You are unable to undergo Potara Fusion (Requirements: no NoFuse, lvl 10 fusion (enabled) and one Potara Earring for each player)").setChatStyle(new ChatStyle().setColor(EnumChatFormatting.RED)));
+            player.addChatComponentMessage(new ChatComponentText("You are unable to undergo Potara Fusion").setChatStyle(new ChatStyle().setColor(EnumChatFormatting.RED)));
             return;
         }
 
