@@ -30,9 +30,10 @@ public class PotaraItemStack extends ItemStackWrapper {
         display.setTag("Lore", lore);
     }
 
+    //Custom comparison check for custom/outdated potara earrings
     @Override
     public boolean compare(ItemStack stack){
-        return stack.stackTagCompound != null && stack.stackTagCompound.getBoolean("isPotara");
+        return stack != null && stack.stackTagCompound != null && stack.stackTagCompound.getBoolean("isPotara");
     }
 
 }
