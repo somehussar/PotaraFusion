@@ -1,6 +1,5 @@
 package io.github.somehussar.potara.item;
 
-import io.github.somehussar.potara.util.InventoryUtil;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -36,6 +35,6 @@ public abstract class ItemStackWrapper {
     }
 
     public boolean compare(ItemStack itemStack){
-        return InventoryUtil.compareItems(this.itemStack, itemStack, false, true);
+        return ItemStack.areItemStackTagsEqual(itemStack, this.itemStack);
     }
 }

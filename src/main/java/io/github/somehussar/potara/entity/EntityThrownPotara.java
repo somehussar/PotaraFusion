@@ -2,13 +2,13 @@ package io.github.somehussar.potara.entity;
 
 import io.github.somehussar.potara.item.ItemRegistry;
 import io.github.somehussar.potara.player.DBCPlayerWrapper;
-import io.github.somehussar.potara.util.InventoryUtil;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityExpBottle;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.*;
 import net.minecraft.world.World;
 
@@ -47,7 +47,7 @@ public class EntityThrownPotara extends EntityExpBottle {
         // checks if potara still has a thrower player and if the hit object is a player
         if( this.player == null || !(object.entityHit instanceof EntityPlayerMP)){
             if(this.player != null)
-                this.player.addChatComponentMessage((IChatComponent) new ChatComponentText( "You missed!").setChatStyle(new ChatStyle().setColor(EnumChatFormatting.YELLOW)));
+                this.player.addChatComponentMessage(new ChatComponentText( "You missed!").setChatStyle(new ChatStyle().setColor(EnumChatFormatting.YELLOW)));
             this.summonDrop();
             return;
         }
@@ -63,12 +63,16 @@ public class EntityThrownPotara extends EntityExpBottle {
 
         if(hitPlayer.canUsePotara() && hitPlayer.willingToFuse()){
             throwerPlayer.fuseWith(hitPlayer, 30);
-            InventoryUtil.removeItem(hitPlayer.getPlayer(), ItemRegistry.POTARA_CUSTOM_ITEM, 1);
 
+            ItemStack heldItem = hitPlayer.getPlayer().getHeldItem();
+            if(heldItem.stackSize > 1)
+               heldItem.stackSize--;
+            else
+                hitPlayer.getPlayer().setCurrentItemOrArmor(0, null);
             return;
         }
 
-        this.player.addChatComponentMessage((IChatComponent) new ChatComponentText("This player either can't or isn't willing to undergo Potara Fusion").setChatStyle(new ChatStyle().setColor(EnumChatFormatting.YELLOW)));
+        this.player.addChatComponentMessage(new ChatComponentText("This player either can't or isn't willing to undergo Potara Fusion").setChatStyle(new ChatStyle().setColor(EnumChatFormatting.YELLOW)));
 
         this.returnToPlayer();
     }
