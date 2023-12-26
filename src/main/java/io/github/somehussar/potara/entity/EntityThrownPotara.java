@@ -9,9 +9,7 @@ import net.minecraft.entity.item.EntityExpBottle;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.util.ChatComponentText;
-import net.minecraft.util.EnumChatFormatting;
-import net.minecraft.util.MovingObjectPosition;
+import net.minecraft.util.*;
 import net.minecraft.world.World;
 
 public class EntityThrownPotara extends EntityExpBottle {
@@ -49,7 +47,7 @@ public class EntityThrownPotara extends EntityExpBottle {
         // checks if potara still has a thrower player and if the hit object is a player
         if( this.player == null || !(object.entityHit instanceof EntityPlayerMP)){
             if(this.player != null)
-                this.player.addChatComponentMessage(new ChatComponentText(EnumChatFormatting.YELLOW + "You missed!"));
+                this.player.addChatComponentMessage((IChatComponent) new ChatComponentText( "You missed!").setChatStyle(new ChatStyle().setColor(EnumChatFormatting.YELLOW)));
             this.summonDrop();
             return;
         }
@@ -70,7 +68,7 @@ public class EntityThrownPotara extends EntityExpBottle {
             return;
         }
 
-        this.player.addChatComponentMessage(new ChatComponentText(EnumChatFormatting.YELLOW + "This player either can't or isn't willing to undergo Potara Fusion"));
+        this.player.addChatComponentMessage((IChatComponent) new ChatComponentText("This player either can't or isn't willing to undergo Potara Fusion").setChatStyle(new ChatStyle().setColor(EnumChatFormatting.YELLOW)));
 
         this.returnToPlayer();
     }

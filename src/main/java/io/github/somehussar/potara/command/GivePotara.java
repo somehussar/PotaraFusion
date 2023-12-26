@@ -6,6 +6,7 @@ import net.minecraft.command.ICommandSender;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.util.IChatComponent;
 
 import java.util.List;
 
@@ -28,12 +29,12 @@ public class GivePotara implements ICommand {
     @Override
     public void processCommand(ICommandSender sender, String[] args) {
         if(!(sender instanceof EntityPlayer)){
-            sendMessage(sender, EnumChatFormatting.RED + "Command can only be ran by a player.");
+            sendMessage(sender, "Command can only be ran by a player.", EnumChatFormatting.RED);
             return;
         }
         EntityPlayer player = (EntityPlayer) sender;
         ItemRegistry.POTARA_CUSTOM_ITEM.give(player);
-        sendMessage(sender, EnumChatFormatting.GREEN + "Successfully given a Potara item!");
+        sendMessage(sender, "Successfully given a Potara item!", EnumChatFormatting.GREEN);
     }
 
     @Override
@@ -56,10 +57,13 @@ public class GivePotara implements ICommand {
         return 0;
     }
 
-    private void sendMessage(ICommandSender target, String message){
+    private void sendMessage(ICommandSender target, String message, EnumChatFormatting color){
         if(message == null){
             return;
         }
-        target.addChatMessage(new ChatComponentText(message));
+        IChatComponent chatComponent = new ChatComponentText(message);
+        if(color != null)
+            chatComponent.getChatStyle().setColor(color);
+        target.addChatMessage(chatComponent);
     }
 }

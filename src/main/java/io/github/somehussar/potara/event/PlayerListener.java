@@ -9,7 +9,9 @@ import io.github.somehussar.potara.player.DBCPlayerWrapper;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ChatComponentText;
+import net.minecraft.util.ChatStyle;
 import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.util.IChatComponent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 
 public class PlayerListener {
@@ -40,12 +42,13 @@ public class PlayerListener {
         event.setResult(Event.Result.DENY);
 
         if(!JRMCoreConfig.fuzn){
-            player.addChatComponentMessage(new ChatComponentText(EnumChatFormatting.RED + "Fusion is disabled on the server."));
+            player.addChatComponentMessage((IChatComponent) new ChatComponentText("Fusion is disabled on the server.").setChatStyle(new ChatStyle().setColor(EnumChatFormatting.RED)));
             return;
         }
+        DBCPlayerWrapper plr = DBCPlayerWrapper.getPlayer(player);
 
-        if(!DBCPlayerWrapper.getPlayer(player).canUsePotara()){
-            player.addChatComponentMessage(new ChatComponentText(EnumChatFormatting.RED + "You are unable to undergo Potara Fusion (Requirements: no NoFuse, lvl 10 fusion and one Potara Earring for each player)"));
+        if(!plr.canUsePotara() && !plr.willingToFuse()){
+            player.addChatComponentMessage((IChatComponent) new ChatComponentText("You are unable to undergo Potara Fusion (Requirements: no NoFuse, lvl 10 fusion (enabled) and one Potara Earring for each player)").setChatStyle(new ChatStyle().setColor(EnumChatFormatting.RED)));
             return;
         }
 
