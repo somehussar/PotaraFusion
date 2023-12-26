@@ -2,13 +2,17 @@ package io.github.somehussar.potara.command;
 
 import io.github.somehussar.potara.item.ItemRegistry;
 import net.minecraft.command.CommandBase;
+import net.minecraft.command.ICommand;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.IChatComponent;
 
-public class GivePotara extends CommandBase {
+import java.util.List;
+
+public class GivePotara implements ICommand {
     @Override
     public String getCommandName() {
         return "givepotara";
@@ -17,6 +21,11 @@ public class GivePotara extends CommandBase {
     @Override
     public String getCommandUsage(ICommandSender p_71518_1_) {
         return "/givepotara [name]";
+    }
+
+    @Override
+    public List getCommandAliases() {
+        return null;
     }
 
     @Override
@@ -31,8 +40,20 @@ public class GivePotara extends CommandBase {
     }
 
     @Override
-    public boolean canCommandSenderUseCommand(ICommandSender p_71519_1_) {
-        return true;
+    public boolean canCommandSenderUseCommand(ICommandSender commandSender) {
+        if(!(commandSender instanceof EntityPlayer))
+            return false;
+        return MinecraftServer.getServer().getConfigurationManager().func_152596_g(((EntityPlayer) commandSender).getGameProfile());
+    }
+
+    @Override
+    public List addTabCompletionOptions(ICommandSender p_71516_1_, String[] p_71516_2_) {
+        return null;
+    }
+
+    @Override
+    public boolean isUsernameIndex(String[] p_82358_1_, int p_82358_2_) {
+        return false;
     }
 
     @Override
