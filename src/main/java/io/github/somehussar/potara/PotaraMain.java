@@ -43,32 +43,8 @@ public class PotaraMain {
     }
 
     @Mod.EventHandler
-    public void onPostInit(FMLPostInitializationEvent e) {
-        proxy.onPostInit(e);
-    }
-
-    @Mod.EventHandler
-    public void onAboutToStart(FMLServerAboutToStartEvent e) {
-        proxy.onAboutToStart(e);
-    }
-
-    @Mod.EventHandler
     public void onStarting(FMLServerStartingEvent e) {
         proxy.onStarting(e);
     }
 
-    @Mod.EventHandler
-    public void onStarted(FMLServerStartedEvent e) {
-        proxy.onStarted(e);
-    }
-
-    @Mod.EventHandler
-    public void onStopping(FMLServerStoppingEvent e) {
-        proxy.onStopping(e);
-    }
-
-    @Mod.EventHandler
-    public void onStopped(FMLServerStoppedEvent e) {
-        proxy.onStopped(e);
-    }
 }
