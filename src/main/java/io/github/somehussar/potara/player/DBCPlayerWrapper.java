@@ -71,6 +71,10 @@ public class DBCPlayerWrapper {
         int maxBody = this.getMaxStat(2);
         int maxKi = this.getMaxStat(5);
 
+        spectator.setStatusEffect(3, false);
+        spectator.setStatusEffect(4, false);
+        spectator.setStatusEffect(5, false);
+
         this.tag.setInteger("jrmcBdy", maxBody);
         spectator.tag.setInteger("jrmcBdy", maxBody);
         this.tag.setInteger("jrmcEnrgy", maxKi);
@@ -78,7 +82,7 @@ public class DBCPlayerWrapper {
     }
 
     public boolean canUsePotara(){
-        return canFuse() && getFusionLevel() == 10 && player.inventory.hasItemStack(ItemRegistry.POTARA_CUSTOM_ITEM.getItemStack());
+        return canFuse() && getFusionLevel() == 10 && ItemRegistry.POTARA_CUSTOM_ITEM.compare(player.getHeldItem());
     }
 
     public boolean hasNoFuse(){
@@ -89,6 +93,9 @@ public class DBCPlayerWrapper {
         return !fusion.isEmpty() && !fusion.equals(" ") && !fusion.equals("0");
     }
 
+    public EntityPlayer getPlayer() {
+        return player;
+    }
     public byte getPowerType(){
         return this.tag.getByte("jrmcPwrtyp");
     }
@@ -117,9 +124,6 @@ public class DBCPlayerWrapper {
     }
 
 
-    public EntityPlayer getPlayer() {
-        return player;
-    }
 
     public boolean hasStatusEffect(int id){
         return getStatusEffects().contains(JRMCoreH.StusEfcts[id]);
