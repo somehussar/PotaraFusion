@@ -1,11 +1,29 @@
 package io.github.somehussar.potara.util;
 
+import io.github.somehussar.potara.item.ItemStackWrapper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
 
 public class InventoryUtil {
     private InventoryUtil(){}
+
+    public static void removeItem(EntityPlayer player, ItemStackWrapper item, int amount){
+        ItemStack[] mainInv = player.inventory.mainInventory;
+        for(int i = 0; i < mainInv.length; i++){
+            ItemStack is = player.inventory.mainInventory[i];
+            if(item.compare(is)){
+                if(amount > is.stackSize){
+                    amount -= is.stackSize;
+                    mainInv[i] = null;
+                }else{
+                    is.splitStack(amount);
+                    break;
+                }
+            }
+        }
+        player.inventoryContainer.detectAndSendChanges();
+    }
 
     public static void removeItem(EntityPlayer player, ItemStack item, int amount){
         removeItem(player, item, amount, true, true);
@@ -86,6 +104,8 @@ public class InventoryUtil {
             return false;
         if (!ignoreNBT && item.stackTagCompound != null && (item2.stackTagCompound == null || !item.stackTagCompound.equals(item2.stackTagCompound)))
             return false;
-        return ignoreNBT || item2.stackTagCompound == null || item.stackTagCompound != null;
+        if(!ignoreNBT && item2.stackTagCompound != null && item.stackTagCompound == null)
+            return false;
+        return true;
     }
 }
