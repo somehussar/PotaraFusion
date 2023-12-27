@@ -1,7 +1,6 @@
 package io.github.somehussar.potara.command;
 
-import io.github.somehussar.potara.item.ItemRegistry;
-import net.minecraft.command.CommandBase;
+import io.github.somehussar.potara.item.PotaraItem;
 import net.minecraft.command.ICommand;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.entity.player.EntityPlayer;
@@ -35,7 +34,7 @@ public class GivePotara implements ICommand {
             return;
         }
         EntityPlayer player = (EntityPlayer) sender;
-        ItemRegistry.POTARA_CUSTOM_ITEM.give(player);
+        PotaraItem.give(player);
         sendMessage(sender, "Successfully given a Potara item!", EnumChatFormatting.GREEN);
     }
 

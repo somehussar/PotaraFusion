@@ -4,7 +4,7 @@ import JinRyuu.JRMCore.JRMCoreConfig;
 import cpw.mods.fml.common.eventhandler.Event;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import io.github.somehussar.potara.entity.EntityThrownPotara;
-import io.github.somehussar.potara.item.ItemRegistry;
+import io.github.somehussar.potara.item.PotaraItem;
 import io.github.somehussar.potara.player.DBCPlayerWrapper;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
@@ -30,7 +30,7 @@ public class PlayerListener {
         EntityPlayerMP player = (EntityPlayerMP) event.entityPlayer;
         ItemStack item = player.getHeldItem();
 
-        if(!ItemRegistry.POTARA_CUSTOM_ITEM.compare(item)){
+        if(!PotaraItem.compare(item)){
             return;
         }
 
