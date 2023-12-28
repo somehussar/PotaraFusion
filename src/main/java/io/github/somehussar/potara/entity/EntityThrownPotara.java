@@ -1,7 +1,7 @@
 package io.github.somehussar.potara.entity;
 
 import io.github.somehussar.potara.PotaraConfig;
-import io.github.somehussar.potara.item.PotaraItem;
+import io.github.somehussar.potara.item.PotaraItemWrapper;
 import io.github.somehussar.potara.player.DBCPlayerWrapper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -79,12 +79,12 @@ public class EntityThrownPotara extends EntityExpBottle {
     }
 
     public Entity getDropEntity(){
-        return new EntityItem(this.worldObj, this.posX, this.posY+0.5, this.posZ, PotaraItem.getItemStack());
+        return new EntityItem(this.worldObj, this.posX, this.posY+0.5, this.posZ, PotaraItemWrapper.getItemStack());
     }
 
     private void returnToPlayer(){
         if(!this.player.capabilities.isCreativeMode)
-            PotaraItem.give(this.player);
+            PotaraItemWrapper.give(this.player);
     }
 
     private void summonDrop(){

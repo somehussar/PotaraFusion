@@ -4,7 +4,7 @@ import JinRyuu.JRMCore.JRMCoreConfig;
 import JinRyuu.JRMCore.JRMCoreH;
 import JinRyuu.JRMCore.JRMCoreHDBC;
 import io.github.somehussar.potara.PotaraMain;
-import io.github.somehussar.potara.item.PotaraItem;
+import io.github.somehussar.potara.item.PotaraItemWrapper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ChatComponentText;
@@ -85,7 +85,7 @@ public class DBCPlayerWrapper {
     }
 
     public boolean hasPotaraInHand(){
-        return PotaraItem.compare(player.getHeldItem());
+        return PotaraItemWrapper.compare(player.getHeldItem());
     }
 
     public boolean hasNoFuse(){

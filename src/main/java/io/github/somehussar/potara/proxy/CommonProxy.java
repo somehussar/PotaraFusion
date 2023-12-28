@@ -7,7 +7,7 @@ import io.github.somehussar.potara.PotaraMain;
 import io.github.somehussar.potara.command.GivePotara;
 import io.github.somehussar.potara.entity.EntityThrownPotara;
 import io.github.somehussar.potara.event.PlayerListener;
-import io.github.somehussar.potara.item.PotaraItem;
+import io.github.somehussar.potara.item.PotaraItemWrapper;
 import net.minecraft.entity.Entity;
 import net.minecraftforge.common.MinecraftForge;
 
@@ -16,7 +16,7 @@ public class CommonProxy {
     public void onPreInit(FMLPreInitializationEvent e){
         PotaraConfig.init(e.getModConfigurationDirectory().getAbsolutePath());
         registerEntity(EntityThrownPotara.class, "ThrownPotara");
-        PotaraItem.init();
+        PotaraItemWrapper.init();
     }
 
     public void onInit(FMLInitializationEvent e){
