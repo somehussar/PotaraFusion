@@ -9,7 +9,7 @@ public class PotaraConfig {
     public static Configuration configuration;
 
     private static final String CATEGORY_ITEM = "POTARA_ITEM";
-    private static final String CATEGORY_FUSION = "FUSION_TIMERS";
+    private static final String CATEGORY_FUSION_SETTINGS = "FUSION_SETTINGS";
 
     public static String potaraName = EnumChatFormatting.GREEN.toString() + EnumChatFormatting.BOLD + "Potara Earring";
     public static String[] potaraLore = {
@@ -25,6 +25,8 @@ public class PotaraConfig {
 
     public static int potaraFuseTime = 30;
 
+    public static int potaraFusionLevelRequirement = 10;
+
     public static void init(String configDir){
         if(configuration == null){
             File path = new File(configDir+ "/" + PotaraMain.MODID + ".cfg");
@@ -37,7 +39,9 @@ public class PotaraConfig {
         potaraName = configuration.getString("Potara item name: ", CATEGORY_ITEM, potaraName, "");
         potaraLore = configuration.getStringList("Potara item lore: ", CATEGORY_ITEM, potaraLore, "Use \u00a7 instead of & for color codes.");
 
-        potaraFuseTime = configuration.getInt("Potara fuse time: ", CATEGORY_FUSION, potaraFuseTime, 10, 120, "Fusion time in minutes.");
+        potaraFuseTime = configuration.getInt("Potara fuse time: ", CATEGORY_FUSION_SETTINGS, potaraFuseTime, 10, 120, "Fusion time in minutes.");
+
+        potaraFusionLevelRequirement = configuration.getInt("Potara fusion lvl requirement: ", CATEGORY_FUSION_SETTINGS, potaraFusionLevelRequirement, 1, 10, "Fusion skill level requirement to be viable to attempt Potara Fusion");
 
         if(configuration.hasChanged()){
             configuration.save();

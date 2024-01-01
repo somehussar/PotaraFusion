@@ -3,6 +3,7 @@ package io.github.somehussar.potara.player;
 import JinRyuu.JRMCore.JRMCoreConfig;
 import JinRyuu.JRMCore.JRMCoreH;
 import JinRyuu.JRMCore.JRMCoreHDBC;
+import io.github.somehussar.potara.PotaraConfig;
 import io.github.somehussar.potara.PotaraMain;
 import io.github.somehussar.potara.item.PotaraItemWrapper;
 import net.minecraft.entity.player.EntityPlayer;
@@ -81,7 +82,7 @@ public class DBCPlayerWrapper {
     }
 
     public boolean canUsePotara(){
-        return canFuse() && getFusionLevel() == 10;
+        return canFuse() && getFusionLevel() == PotaraConfig.potaraFusionLevelRequirement;
     }
 
     public boolean hasPotaraInHand(){
