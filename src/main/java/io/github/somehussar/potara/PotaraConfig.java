@@ -1,5 +1,7 @@
 package io.github.somehussar.potara;
 
+import net.minecraft.init.Items;
+import net.minecraft.item.Item;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraftforge.common.config.Configuration;
 
@@ -23,6 +25,9 @@ public class PotaraConfig {
             EnumChatFormatting.DARK_PURPLE+"-Potara held by each player."
     };
 
+    public static int potaraItemId = Item.getIdFromItem(Items.experience_bottle);
+
+
     public static int potaraFuseTime = 30;
 
     public static int potaraFusionLevelRequirement = 10;
@@ -36,11 +41,11 @@ public class PotaraConfig {
     }
 
     private static void loadConfig(){
-        potaraName = configuration.getString("Potara item name: ", CATEGORY_ITEM, potaraName, "");
         potaraLore = configuration.getStringList("Potara item lore: ", CATEGORY_ITEM, potaraLore, "Use \u00a7 instead of & for color codes.");
+        potaraName = configuration.getString("Potara item name: ", CATEGORY_ITEM, potaraName, "");
+        potaraItemId = configuration.get(CATEGORY_ITEM, "Potara item ID: ", potaraItemId, "").getInt();
 
         potaraFuseTime = configuration.getInt("Potara fuse time: ", CATEGORY_FUSION_SETTINGS, potaraFuseTime, 10, 120, "Fusion time in minutes.");
-
         potaraFusionLevelRequirement = configuration.getInt("Potara fusion lvl requirement: ", CATEGORY_FUSION_SETTINGS, potaraFusionLevelRequirement, 1, 10, "Fusion skill level requirement to be viable to attempt Potara Fusion");
 
         if(configuration.hasChanged()){

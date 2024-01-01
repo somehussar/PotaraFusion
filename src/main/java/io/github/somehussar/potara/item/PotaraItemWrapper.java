@@ -4,6 +4,7 @@ import io.github.somehussar.potara.PotaraConfig;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -42,7 +43,8 @@ public class PotaraItemWrapper {
      * Creates a new itemstack that has correct item info loaded from configs
      */
     public static void init(){
-        itemStack = new ItemStack(Items.experience_bottle, 1);
+//        itemStack = new ItemStack(Items.experience_bottle, 1);
+        itemStack = new ItemStack(Item.getItemById(PotaraConfig.potaraItemId), 1);
         itemStack.setStackDisplayName(PotaraConfig.potaraName);
 
         NBTTagCompound item = itemStack.getTagCompound();
