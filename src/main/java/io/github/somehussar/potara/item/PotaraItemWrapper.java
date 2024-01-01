@@ -38,6 +38,9 @@ public class PotaraItemWrapper {
         }
     }
 
+    /**
+     * Creates a new itemstack that has correct item info loaded from configs
+     */
     public static void init(){
         itemStack = new ItemStack(Items.experience_bottle, 1);
         itemStack.setStackDisplayName(PotaraConfig.potaraName);
@@ -61,7 +64,7 @@ public class PotaraItemWrapper {
         display.setTag("Lore", lore);
     }
 
-    //Custom comparison check for custom/outdated potara earrings
+    //Custom comparison check for custom/outdated/corrupted potara earrings
     public static boolean compare(ItemStack stack){
         return stack != null && stack.stackTagCompound != null && stack.stackTagCompound.getBoolean("isPotara");
     }

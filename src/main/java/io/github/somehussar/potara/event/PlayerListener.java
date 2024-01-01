@@ -20,27 +20,24 @@ public class PlayerListener {
         if(event.entityPlayer.getEntityWorld().isRemote){
             return;
         }
-
         if(event.action != PlayerInteractEvent.Action.RIGHT_CLICK_AIR){
             return;
         }
 
-
-
         EntityPlayerMP player = (EntityPlayerMP) event.entityPlayer;
         ItemStack item = player.getHeldItem();
 
-        if(!PotaraItemWrapper.compare(item)){
+        if(!PotaraItemWrapper.compare(item)){ //If the used item isn't a potara, return.
             return;
         }
 
         event.setCanceled(true);
 
-        //Disappearing item fix
+        //Fixes the disappearing item bug on clientside
         player.sendContainerToPlayer(player.inventoryContainer);
         event.setResult(Event.Result.DENY);
 
-        if(!JRMCoreConfig.fuzn){
+        if(!JRMCoreConfig.fuzn){ //If fusion is disabled, return
             player.addChatComponentMessage(new ChatComponentText("Fusion is disabled on the server.").setChatStyle(new ChatStyle().setColor(EnumChatFormatting.RED)));
             return;
         }

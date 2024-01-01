@@ -115,6 +115,13 @@ public class DBCPlayerWrapper {
         return JRMCoreH.PlyrAttrbts(player);
     }
 
+    /**
+     * Bad reimplementation of a JRMC function (does not take in account skills that increase stats, ie. ki boost)
+     *
+     * thankfully it's not used here on any skill-boostable stats.
+     * @param statId index of the stat you're interested in
+     * @return max value of a stat
+     */
     public int getMaxStat(int statId){
         return JRMCoreH.stat(player, statId, getPowerType(), statId, getPlayerAttributes()[statId], getRace(), getClassId(), 0.0f);
     }

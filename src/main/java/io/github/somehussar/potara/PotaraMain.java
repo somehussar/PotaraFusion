@@ -6,10 +6,11 @@ import cpw.mods.fml.common.event.*;
 import io.github.somehussar.potara.proxy.CommonProxy;
 import org.apache.logging.log4j.Logger;
 
-@Mod(modid = PotaraMain.MODID, version=PotaraMain.VERSION, acceptableRemoteVersions = "*")
+@Mod(modid = PotaraMain.MODID, name=PotaraMain.NAME, version=PotaraMain.VERSION, acceptableRemoteVersions = "*")
 public class PotaraMain {
 
     public static final String MODID = "potara";
+    public static final String NAME = "Potara Earrings";
     public static final String VERSION = "1.0.0";
 
     @Mod.Instance(PotaraMain.MODID)
