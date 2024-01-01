@@ -1,6 +1,7 @@
 # Ignore these files:
 /libs/*
 .gradle/*
+/.gradle/*
 /forge-*
 /*.txt
 /gradle*
