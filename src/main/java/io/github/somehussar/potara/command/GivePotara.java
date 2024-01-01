@@ -1,17 +1,14 @@
 package io.github.somehussar.potara.command;
 
 import io.github.somehussar.potara.item.PotaraItemWrapper;
-import net.minecraft.command.ICommand;
+import net.minecraft.command.CommandBase;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.IChatComponent;
 
-import java.util.List;
-
-public class GivePotara implements ICommand {
+public class GivePotara extends CommandBase {
     @Override
     public String getCommandName() {
         return "givepotara";
@@ -23,11 +20,6 @@ public class GivePotara implements ICommand {
     }
 
     @Override
-    public List getCommandAliases() {
-        return null;
-    }
-
-    @Override
     public void processCommand(ICommandSender sender, String[] args) {
         if(!(sender instanceof EntityPlayer)){
             sendMessage(sender, "Command can only be ran by a player.", EnumChatFormatting.RED);
@@ -36,28 +28,6 @@ public class GivePotara implements ICommand {
         EntityPlayer player = (EntityPlayer) sender;
         PotaraItemWrapper.give(player);
         sendMessage(sender, "Successfully given a Potara item!", EnumChatFormatting.GREEN);
-    }
-
-    @Override
-    public boolean canCommandSenderUseCommand(ICommandSender commandSender) {
-        if(!(commandSender instanceof EntityPlayer))
-            return false;
-        return MinecraftServer.getServer().getConfigurationManager().func_152596_g(((EntityPlayer) commandSender).getGameProfile());
-    }
-
-    @Override
-    public List addTabCompletionOptions(ICommandSender p_71516_1_, String[] p_71516_2_) {
-        return null;
-    }
-
-    @Override
-    public boolean isUsernameIndex(String[] p_82358_1_, int p_82358_2_) {
-        return false;
-    }
-
-    @Override
-    public int compareTo(Object o) {
-        return 0;
     }
 
     private void sendMessage(ICommandSender target, String message, EnumChatFormatting color){
