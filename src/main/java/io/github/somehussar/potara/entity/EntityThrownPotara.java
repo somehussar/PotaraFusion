@@ -12,27 +12,24 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.*;
 import net.minecraft.world.World;
+import noppes.npcs.entity.EntityProjectile;
 
-public class EntityThrownPotara extends EntityExpBottle {
+public class EntityThrownPotara extends EntityProjectile {
 
     private EntityPlayerMP player;
 
-    public EntityThrownPotara(World p_i1785_1_)
-    {
+    public EntityThrownPotara(World p_i1785_1_) {
         super(p_i1785_1_);
+        this.summonDrop();
+        this.setDead();
     }
-    public EntityThrownPotara(World world, EntityLivingBase entity){
-        super(world, entity);
-
+    public EntityThrownPotara(World world, EntityLivingBase entity) {
+        super(world, entity, PotaraItemWrapper.getItemStack(), false);
+        this.setHasGravity(true);
+        this.shoot(2);
         this.player = (EntityPlayerMP) entity;
-
-        this.motionX *= 2.5;
-        this.motionZ *= 2.5;
     }
 
-    public EntityThrownPotara(World world, double x, double y, double z){
-        super(world, x, y, z);
-    }
 
     @Override
     protected void onImpact(MovingObjectPosition object){
