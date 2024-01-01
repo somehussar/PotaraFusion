@@ -2,18 +2,19 @@
 {
   "modid": "potara",
   "name": "Potara Earrings",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
   "description": "Mod that adds Potara functionality to DBC",
-  "version": "1.0.0",
-  "mcversion": "1.7.10",
-  "url": "",
-  "updateUrl": "",
-  "authorList": ["Hussar"],
-  "parent": "jinryuudragonblockc",
-  "logoFile": "",
-  "screenshots": [],
-
-  "useDependencyInformation": true,
-  "dependencies": ['required-after:jinryuudragonblockc'],
-  "requiredMods": ['jinryuudragonblockc@[1.4.85,)']
+  "credits": "Created by Hussar",
+  "authorList": [ "Hussar" ],
+  "useDependencyInformation" : true
+  "dependencies": [
+     "required-after:jinryuudragonblockc",
+     "required-after:customnpcs"
+  ],
+  "requiredMods" : [
+    "jinryuudragonblockc",
+    "customnpcs"
+  }
 }
 ]
