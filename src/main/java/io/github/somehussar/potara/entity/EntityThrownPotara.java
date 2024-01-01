@@ -5,7 +5,6 @@ import io.github.somehussar.potara.item.PotaraItemWrapper;
 import io.github.somehussar.potara.player.DBCPlayerWrapper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.item.EntityExpBottle;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -26,7 +25,7 @@ public class EntityThrownPotara extends EntityProjectile {
     public EntityThrownPotara(World world, EntityLivingBase entity) {
         super(world, entity, PotaraItemWrapper.getItemStack(), false);
         this.setHasGravity(true);
-        this.shoot(2);
+        this.shoot(PotaraConfig.potaraThrowSpeed);
         this.player = (EntityPlayerMP) entity;
     }
 
