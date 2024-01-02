@@ -17,6 +17,7 @@ public class EntityThrownPotara extends EntityProjectile {
 
     private EntityPlayerMP player;
 
+    //Unloaded potara's will immediately drop the potara item once loaded.
     public EntityThrownPotara(World p_i1785_1_) {
         super(p_i1785_1_);
         this.summonDrop();
@@ -25,7 +26,8 @@ public class EntityThrownPotara extends EntityProjectile {
     public EntityThrownPotara(World world, EntityLivingBase entity) {
         super(world, entity, PotaraItemWrapper.getItemStack(), false);
         this.setHasGravity(true);
-        this.shoot(PotaraConfig.potaraThrowSpeed);
+        this.setSpeed(PotaraConfig.potaraThrowSpeed);
+        this.shoot(0);
         this.player = (EntityPlayerMP) entity;
     }
 
@@ -39,12 +41,9 @@ public class EntityThrownPotara extends EntityProjectile {
         this.setDead();
 
 
-        // this.player == null - used for potaras thrown during a server restart
-        //
-        // checks if potara still has a thrower player and if the hit object is a player
-        if( this.player == null || !(object.entityHit instanceof EntityPlayerMP)){
-            if(this.player != null)
-                this.player.addChatComponentMessage(new ChatComponentText( "You missed!").setChatStyle(new ChatStyle().setColor(EnumChatFormatting.YELLOW)));
+        // checks if the hit object is a player or not
+        if(!(object.entityHit instanceof EntityPlayerMP)){
+            this.player.addChatComponentMessage(new ChatComponentText( "You missed!").setChatStyle(new ChatStyle().setColor(EnumChatFormatting.YELLOW)));
             this.summonDrop();
             return;
         }
