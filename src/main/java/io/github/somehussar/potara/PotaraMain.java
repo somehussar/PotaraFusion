@@ -6,7 +6,7 @@ import cpw.mods.fml.common.event.*;
 import io.github.somehussar.potara.proxy.CommonProxy;
 import org.apache.logging.log4j.Logger;
 
-@Mod(modid = PotaraMain.MODID, name=PotaraMain.NAME, version=PotaraMain.VERSION, acceptableRemoteVersions = "*")
+@Mod(modid = PotaraMain.MODID, name=PotaraMain.NAME, version=PotaraMain.VERSION, useMetadata = true, acceptableRemoteVersions = "*")
 public class PotaraMain {
 
     public static final String MODID = "potara";

@@ -11,6 +11,7 @@ public class PotaraConfig {
     public static Configuration configuration;
 
     private static final String CATEGORY_ITEM = "POTARA_ITEM";
+    private static final String CATEGORY_THROWN_ENTITY = "POTARA_ENTITY";
     private static final String CATEGORY_FUSION_SETTINGS = "FUSION_SETTINGS";
 
     public static String potaraName = EnumChatFormatting.GREEN.toString() + EnumChatFormatting.BOLD + "Potara Earring";
@@ -26,6 +27,8 @@ public class PotaraConfig {
     };
 
     public static int potaraItemId = Item.getIdFromItem(Items.experience_bottle);
+
+    public static int potaraThrowSpeed = 15;
 
 
     public static int potaraFuseTime = 30;
@@ -47,6 +50,8 @@ public class PotaraConfig {
 
         potaraFuseTime = configuration.getInt("Potara fuse time: ", CATEGORY_FUSION_SETTINGS, potaraFuseTime, 10, 120, "Fusion time in minutes.");
         potaraFusionLevelRequirement = configuration.getInt("Potara fusion lvl requirement: ", CATEGORY_FUSION_SETTINGS, potaraFusionLevelRequirement, 1, 10, "Fusion skill level requirement to be viable to attempt Potara Fusion");
+
+        potaraThrowSpeed = configuration.getInt("Thrown potara speed", CATEGORY_THROWN_ENTITY, potaraThrowSpeed, 1, 30, "Speed at which the earring travels when thrown.");
 
         if(configuration.hasChanged()){
             configuration.save();

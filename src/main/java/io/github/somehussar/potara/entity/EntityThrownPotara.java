@@ -5,34 +5,32 @@ import io.github.somehussar.potara.item.PotaraItemWrapper;
 import io.github.somehussar.potara.player.DBCPlayerWrapper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.item.EntityExpBottle;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.*;
 import net.minecraft.world.World;
+import noppes.npcs.entity.EntityProjectile;
 
-public class EntityThrownPotara extends EntityExpBottle {
+public class EntityThrownPotara extends EntityProjectile {
 
     private EntityPlayerMP player;
 
-    public EntityThrownPotara(World p_i1785_1_)
-    {
+    //Unloaded potara's will immediately drop the potara item once loaded.
+    public EntityThrownPotara(World p_i1785_1_) {
         super(p_i1785_1_);
+        this.summonDrop();
+        this.setDead();
     }
-    public EntityThrownPotara(World world, EntityLivingBase entity){
-        super(world, entity);
-
+    public EntityThrownPotara(World world, EntityLivingBase entity) {
+        super(world, entity, PotaraItemWrapper.getItemStack(), false);
+        this.setHasGravity(true);
+        this.setSpeed(PotaraConfig.potaraThrowSpeed);
+        this.shoot(0);
         this.player = (EntityPlayerMP) entity;
-
-        this.motionX *= 2.5;
-        this.motionZ *= 2.5;
     }
 
-    public EntityThrownPotara(World world, double x, double y, double z){
-        super(world, x, y, z);
-    }
 
     @Override
     protected void onImpact(MovingObjectPosition object){
@@ -43,12 +41,9 @@ public class EntityThrownPotara extends EntityExpBottle {
         this.setDead();
 
 
-        // this.player == null - used for potaras thrown during a server restart
-        //
-        // checks if potara still has a thrower player and if the hit object is a player
-        if( this.player == null || !(object.entityHit instanceof EntityPlayerMP)){
-            if(this.player != null)
-                this.player.addChatComponentMessage(new ChatComponentText( "You missed!").setChatStyle(new ChatStyle().setColor(EnumChatFormatting.YELLOW)));
+        // checks if the hit object is a player or not
+        if(!(object.entityHit instanceof EntityPlayerMP)){
+            this.player.addChatComponentMessage(new ChatComponentText( "You missed!").setChatStyle(new ChatStyle().setColor(EnumChatFormatting.YELLOW)));
             this.summonDrop();
             return;
         }
