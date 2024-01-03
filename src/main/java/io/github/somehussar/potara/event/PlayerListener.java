@@ -5,11 +5,10 @@ import cpw.mods.fml.common.eventhandler.Event;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import io.github.somehussar.potara.entity.EntityThrownPotara;
 import io.github.somehussar.potara.item.PotaraItemWrapper;
+import io.github.somehussar.potara.player.ChatMessageHelper;
 import io.github.somehussar.potara.player.DBCPlayerWrapper;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.ChatComponentText;
-import net.minecraft.util.ChatStyle;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 
@@ -38,13 +37,13 @@ public class PlayerListener {
         event.setResult(Event.Result.DENY);
 
         if(!JRMCoreConfig.fuzn){ //If fusion is disabled, return
-            player.addChatComponentMessage(new ChatComponentText("Fusion is disabled on the server.").setChatStyle(new ChatStyle().setColor(EnumChatFormatting.RED)));
+            ChatMessageHelper.sendMessage(player, "Fusion is disabled on the server", EnumChatFormatting.RED);
             return;
         }
         DBCPlayerWrapper plr = DBCPlayerWrapper.getPlayer(player);
 
         if(!plr.canUsePotara() || !plr.willingToFuse()){
-            player.addChatComponentMessage(new ChatComponentText("You are unable to undergo Potara Fusion").setChatStyle(new ChatStyle().setColor(EnumChatFormatting.RED)));
+            ChatMessageHelper.sendMessage(player, "You are unable to undergo Potara Fusion", EnumChatFormatting.RED);
             return;
         }
 
