@@ -5,6 +5,4 @@
 /*.txt
 /gradle*
 /out
-/libs/DEV*.jar
-
 /eclipse/*
