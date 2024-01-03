@@ -2,6 +2,7 @@ package io.github.somehussar.potara.entity;
 
 import io.github.somehussar.potara.PotaraConfig;
 import io.github.somehussar.potara.item.PotaraItemWrapper;
+import io.github.somehussar.potara.player.ChatMessageHelper;
 import io.github.somehussar.potara.player.DBCPlayerWrapper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -43,7 +44,7 @@ public class EntityThrownPotara extends EntityProjectile {
 
         // checks if the hit object is a player or not
         if(!(object.entityHit instanceof EntityPlayerMP)){
-            this.player.addChatComponentMessage(new ChatComponentText( "You missed!").setChatStyle(new ChatStyle().setColor(EnumChatFormatting.YELLOW)));
+            ChatMessageHelper.sendMessage(this.player, "You missed", EnumChatFormatting.YELLOW);
             this.summonDrop();
             return;
         }
@@ -68,8 +69,7 @@ public class EntityThrownPotara extends EntityProjectile {
             return;
         }
 
-        this.player.addChatComponentMessage(new ChatComponentText("This player either can't or isn't willing to undergo Potara Fusion").setChatStyle(new ChatStyle().setColor(EnumChatFormatting.YELLOW)));
-
+        ChatMessageHelper.sendMessage(this.player, "This player either can't or isn't willing to undergo Potara Fusion", EnumChatFormatting.YELLOW);
         this.returnToPlayer();
     }
 
