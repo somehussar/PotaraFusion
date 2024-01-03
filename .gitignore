@@ -1,5 +1,4 @@
 # Ignore these files:
-/libs/*
 .gradle/*
 /.gradle/*
 /forge-*
@@ -9,6 +8,3 @@
 /libs/DEV*.jar
 
 /eclipse/*
-
-# DO NOT ignore these files:
-!/eclipse/mods/CodeChickenCore-1.7.10-1.0.7.48-universal.jar
