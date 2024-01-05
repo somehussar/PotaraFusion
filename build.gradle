@@ -21,7 +21,7 @@ buildscript {
 
 apply plugin: 'forge'
 
-def domain = "io.github.somehussar"
+def domain = "somehussar"
 def modid = 'potara'
 
 version = "1.0.0"
