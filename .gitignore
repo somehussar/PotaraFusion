@@ -1,7 +1,4 @@
 # Ignore these files:
-.gradle/*
-/.gradle/*
-/forge-*
 /*.txt
 /gradle*
 /out
