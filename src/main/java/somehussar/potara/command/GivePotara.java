@@ -1,7 +1,7 @@
-package io.github.somehussar.potara.command;
+package somehussar.potara.command;
 
-import io.github.somehussar.potara.item.PotaraItemWrapper;
-import io.github.somehussar.potara.player.ChatMessageHelper;
+import somehussar.potara.item.PotaraItemWrapper;
+import somehussar.potara.player.ChatMessageHelper;
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.entity.player.EntityPlayer;

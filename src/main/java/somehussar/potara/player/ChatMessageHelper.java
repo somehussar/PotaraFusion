@@ -1,4 +1,4 @@
-package io.github.somehussar.potara.player;
+package somehussar.potara.player;
 
 import net.minecraft.command.ICommandSender;
 import net.minecraft.util.ChatComponentText;

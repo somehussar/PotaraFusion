@@ -1,9 +1,9 @@
-package io.github.somehussar.potara.entity;
+package somehussar.potara.entity;
 
-import io.github.somehussar.potara.PotaraConfig;
-import io.github.somehussar.potara.item.PotaraItemWrapper;
-import io.github.somehussar.potara.player.ChatMessageHelper;
-import io.github.somehussar.potara.player.DBCPlayerWrapper;
+import somehussar.potara.PotaraConfig;
+import somehussar.potara.item.PotaraItemWrapper;
+import somehussar.potara.player.ChatMessageHelper;
+import somehussar.potara.player.DBCPlayerWrapper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;

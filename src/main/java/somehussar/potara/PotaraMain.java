@@ -1,9 +1,9 @@
-package io.github.somehussar.potara;
+package somehussar.potara;
 
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.*;
-import io.github.somehussar.potara.proxy.CommonProxy;
+import somehussar.potara.proxy.CommonProxy;
 import org.apache.logging.log4j.Logger;
 
 @Mod(modid = PotaraMain.MODID, name=PotaraMain.NAME, version=PotaraMain.VERSION, useMetadata = true, acceptableRemoteVersions = "*")

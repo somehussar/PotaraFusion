@@ -1,6 +1,6 @@
-package io.github.somehussar.potara.item;
+package somehussar.potara.item;
 
-import io.github.somehussar.potara.PotaraConfig;
+import somehussar.potara.PotaraConfig;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;

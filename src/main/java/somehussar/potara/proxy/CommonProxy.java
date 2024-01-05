@@ -1,13 +1,13 @@
-package io.github.somehussar.potara.proxy;
+package somehussar.potara.proxy;
 
 import cpw.mods.fml.common.event.*;
 import cpw.mods.fml.common.registry.EntityRegistry;
-import io.github.somehussar.potara.PotaraConfig;
-import io.github.somehussar.potara.PotaraMain;
-import io.github.somehussar.potara.command.GivePotara;
-import io.github.somehussar.potara.entity.EntityThrownPotara;
-import io.github.somehussar.potara.event.PlayerListener;
-import io.github.somehussar.potara.item.PotaraItemWrapper;
+import somehussar.potara.PotaraConfig;
+import somehussar.potara.PotaraMain;
+import somehussar.potara.command.GivePotara;
+import somehussar.potara.entity.EntityThrownPotara;
+import somehussar.potara.event.PlayerListener;
+import somehussar.potara.item.PotaraItemWrapper;
 import net.minecraft.entity.Entity;
 import net.minecraftforge.common.MinecraftForge;
 

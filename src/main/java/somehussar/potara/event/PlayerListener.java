@@ -1,12 +1,12 @@
-package io.github.somehussar.potara.event;
+package somehussar.potara.event;
 
 import JinRyuu.JRMCore.JRMCoreConfig;
 import cpw.mods.fml.common.eventhandler.Event;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import io.github.somehussar.potara.entity.EntityThrownPotara;
-import io.github.somehussar.potara.item.PotaraItemWrapper;
-import io.github.somehussar.potara.player.ChatMessageHelper;
-import io.github.somehussar.potara.player.DBCPlayerWrapper;
+import somehussar.potara.entity.EntityThrownPotara;
+import somehussar.potara.item.PotaraItemWrapper;
+import somehussar.potara.player.ChatMessageHelper;
+import somehussar.potara.player.DBCPlayerWrapper;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumChatFormatting;

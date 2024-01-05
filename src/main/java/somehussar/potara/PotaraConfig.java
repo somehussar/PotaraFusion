@@ -1,6 +1,5 @@
-package io.github.somehussar.potara;
+package somehussar.potara;
 
-import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraftforge.common.config.Configuration;

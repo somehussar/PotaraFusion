@@ -1,11 +1,11 @@
-package io.github.somehussar.potara.player;
+package somehussar.potara.player;
 
 import JinRyuu.JRMCore.JRMCoreConfig;
 import JinRyuu.JRMCore.JRMCoreH;
 import JinRyuu.JRMCore.JRMCoreHDBC;
-import io.github.somehussar.potara.PotaraConfig;
-import io.github.somehussar.potara.PotaraMain;
-import io.github.somehussar.potara.item.PotaraItemWrapper;
+import somehussar.potara.PotaraConfig;
+import somehussar.potara.PotaraMain;
+import somehussar.potara.item.PotaraItemWrapper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ChatComponentText;
