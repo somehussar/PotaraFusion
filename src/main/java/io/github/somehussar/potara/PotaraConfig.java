@@ -26,7 +26,7 @@ public class PotaraConfig {
             EnumChatFormatting.DARK_PURPLE+"-Potara held by each player."
     };
 
-    public static int potaraItemId = Item.getIdFromItem(Items.experience_bottle);
+    public static int potaraItemId = Item.getIdFromItem((Item) Item.itemRegistry.getObject("experience_bottle"));
 
     public static int potaraThrowSpeed = 15;
 
